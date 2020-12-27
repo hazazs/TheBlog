@@ -1,0 +1,11 @@
+<html layout:decorate="~{layout/main}">
+    <head>
+        <title>Home</title>
+    </head>
+    <body>
+        <div layout:fragment="content" class="center">
+            <h1 th:text="${#authorization.expression('isAuthenticated()')} ? 'Welcome ' + ${#authentication.name} + '!' : 'TheBlog'" class="h1-1"></h1>
+            <img th:src="@{${'/images/avatars/' + avatar}}" th:alt="${#authentication.name}" class="frame"/>
+        </div>
+    </body>
+</html>

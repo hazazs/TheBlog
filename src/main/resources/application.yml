@@ -1,0 +1,111 @@
+server:
+    port: 1126
+    servlet:
+        session:
+            timeout: 2d
+spring:  
+    thymeleaf:
+        cache: false
+    jpa:
+        open-in-view: false
+        hibernate:
+            ddl-auto: update
+        database-platform: org.hibernate.dialect.PostgreSQLDialect
+    datasource:
+        driverClassName: org.postgresql.Driver
+        url: jdbc:postgresql://ec2-54-217-236-206.eu-west-1.compute.amazonaws.com:5432/d1v2p8vv250vuh?sslmode=require&ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory
+        username: goqplrvwupqgcp
+        password: 104970f8380126d542ab779fbde00c17b4aacf73d0ec2790bdb86493c376704a
+    mail:
+        host: smtp.gmail.com
+        port: 587
+        username: hazazs.theblog@gmail.com
+        password: passw42$
+        properties:
+            mail:
+                smtp:
+                    starttls:
+                        enable: true
+    servlet:
+        multipart:
+            max-file-size: 5MB
+            max-request-size: 5MB
+logging:
+    config: src/main/resources/logback-spring.xml
+service:
+    email:
+        templates:
+            verification-and-reset-password: src/main/resources/templates/email/verification-and-reset-password.html
+            delete-account: src/main/resources/templates/email/delete-account.html
+        verification:
+            subject: Please verify your e-mail address
+            instruction: To complete your sign up, we just need to verify your e-mail address.
+            URL: http://88.132.86.3:49152/verification/
+            button: Verify your e-mail address
+        reset-password:
+            subject: Please reset your password
+            instruction: As you requested, you can use the following button to reset your password.
+            URL: http://88.132.86.3:49152/password/reset/
+            button: Reset your password
+        delete-account:
+            subject: Your account has been successfully deleted
+        help:
+            recipient: hazafi.tibor@gmail.com
+    IO:
+        avatars:
+            path: src/main/resources/static/images/avatars/
+            size: 392
+            supported-image-formats: jpeg, png
+    password:
+        password-validator:
+            pattern: ^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$
+    role:
+        default: USER
+    signup:
+        username-validator:
+            pattern: ^[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*$
+        fullname-validator:
+            patterns:
+                pattern-1: ^([dD]r\.\s)?(ifj\.\s)?\p{Lu}\p{Ll}+(\s\p{Lu}\p{Ll}+)+$
+                pattern-2: ^([dD]r\.\s)?(ifj\.\s)?\p{Lu}\p{Ll}+-\p{Lu}\p{Ll}+(\s\p{Lu}\p{Ll}+)+$
+                pattern-3: ^([dD]r\.\s)?(ifj\.\s)?\p{Lu}\.(\s\p{Lu}\p{Ll}+){2,}$
+                pattern-4: ^([dD]r\.\s)?(id\.\s)?\p{Lu}\p{Ll}+(\s\p{Lu}\p{Ll}+)+$
+                pattern-5: ^([dD]r\.\s)?(id\.\s)?\p{Lu}\p{Ll}+-\p{Lu}\p{Ll}+(\s\p{Lu}\p{Ll}+)+$
+                pattern-6: ^([dD]r\.\s)?(id\.\s)?\p{Lu}\.(\s\p{Lu}\p{Ll}+){2,}$
+    status:
+        help-message-sent: The message was sent
+        wait-for-response: The admin will contact you within 24 hours
+        help-message-failed: "<span class=\"red\">Sending your message to the admin was failed</span>"
+        try-again-later: Please try again later
+        username-invalid: Username may only contain alphanumeric characters or single hyphens, and cannot begin or end with a hyphen
+        username-reserved: This username is already registered
+        email-invalid: This e-mail address is invalid
+        email-reserved: This e-mail address is already registered
+        password-invalid: The password must be at least 8 characters containing a number, a lowercase and an uppercase letter
+        password-different: The two passwords must be identical
+        fullname-invalid: Every name tag must start with uppercase letter, except title(s). Please check the format of them as well
+        account-created: "<span class=\"green\">Your account has been successfully created</span>"
+        verification-instructions-sent: Instructions how to verify your e-mail address were sent to
+        check-spam: If you don't receive it within a few minutes, please check your spam folder
+        verification-instructions-failed: "<span class=\"red\">Sending instruction message about how to verify your account was failed</span>"
+        try-log-in: You can try to log in to resend it
+        verification-success: "<span class=\"green\">Your e-mail address has been successfully verified</span>"
+        already-verified: Your e-mail address is already verified
+        verification-code-incorrect: "<span class=\"red\">This verification code is incorrect</span>"
+        forbidden: You have to log in to see this content
+        bad-credentials: "<span class=\"red\">Your login credentials are incorrect</span>"
+        forgot-your-password: "Click <a href=\"/password/forgot\"><u class=\"bold\">here</u></a> if you forgot your password"
+        account-unverified: Before you can log in, you must verify your e-mail address
+        email-unregistered: This e-mail address is not registered
+        reset-password-instructions-sent: Instructions how to reset your password were sent to
+        reset-password-instructions-failed: "<span class=\"red\">Sending instruction message about how to reset your password was failed</span>"
+        password-same: The new password must differ from your previous password
+        password-changed: "<span class=\"green\">Your password has been successfully changed</span>"
+        blog-id-invalid: The blog ID must be in numeric format
+        blog-not-found: "<span class=\"red\">There is no blog posted with ID</span>"
+        no-permission-to-edit: "<span class=\"red\">You don't have permission to edit this blog</span>"
+        blogger-not-found: "<span class=\"red\">There is no blogger registered with username</span>"
+        maximum-size-exceeded: "<span class=\"red\">Maximum image size exceeded</span>"
+        unsupported-image-format: "<span class=\"red\">Only jp(e)g or png image formats are supported</span>"
+        account-successfully-deleted: "<span class=\"green\">Your account has been successfully deleted</span>"
+        goodbye: Goodbye! I would be delighted to welcome you again on my website.

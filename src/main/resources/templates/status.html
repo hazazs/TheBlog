@@ -1,0 +1,18 @@
+<html layout:decorate="~{layout/main}">
+    <head>
+        <title th:text="${#strings.capitalize(type)}"></title>
+    </head>
+    <body>
+        <div layout:fragment="content" class="center">
+            <h1 th:utext="${message1}" class="h1-1"></h1>
+            <h1 th:if="${message2}" th:utext="${message2}" class="h1-2"></h1>
+            <h1 th:if="${message3}" th:utext="${message3}" class="h1-2"></h1>
+            <form th:if="${request_type}" th:action="@{${'/' + request_type}}" method="post" onsubmit="disable(this)">
+                <input th:value="${id}" name="id" type="hidden">
+                <button type="submit" id="request-button" class="green-hover"><span th:class="${'fa fa-' + request_class}"></span><span th:text="${' ' + request_button}"></span></button>
+            </form>
+            <span th:if="${back}"><a th:href="@{${back}}"><button id="back-button" class="green-hover"><span class="fa fa-arrow-left"></span> Back</button></a><br/></span>
+            <img th:src="${'/images/' + type + '.jpg'}" th:alt="${type}"/>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,32 @@
+<html layout:decorate="~{layout/main}">
+    <head>
+        <title>Sign up</title>
+    </head>
+    <body>
+        <div layout:fragment="content" class="padding">
+            <h1 class="h1-form">Please fill out the sign up form!</h1>
+            <form th:action="@{/signup}" method="post" onsubmit="clearAndDisable(this)">
+                <label>Username<span class="red"> *</span></label><br/>
+                <input th:value="${signup_username}" th:classappend="${alert_username} ? 'alert-input'" name="username" type="text" required class="input-height input-width"/>
+                <span th:if="${alert_username}" th:utext="${alert_username}" class="alert-label red relative"></span><br/>
+                <label class="label-margin">E-mail address<span class="red"> *</span></label><br/>
+                <input th:value="${signup_email}" th:classappend="${alert_email} ? 'alert-input'" name="email" type="text" required class="input-height input-width"/>
+                <span th:if="${alert_email}" th:text="${alert_email}" class="alert-label red relative"></span><br/>
+                <label class="label-margin">Password<span class="red"> *</span></label><br/>
+                <input th:value="${signup_password1}" th:classappend="${alert_password1} ? 'alert-input'" name="password1" type="password" required class="input-height input-width"/>
+                <span th:if="${alert_password1}" th:text="${alert_password1}" class="alert-label red relative"></span><br/>
+                <p id="password-make-sure" class="relative">Make sure it's at least 8 characters containing a number, a lowercase and an uppercase letter.</p>
+                <label>Confirm password<span class="red"> *</span></label><br/>
+                <input th:value="${signup_password2}" th:classappend="${alert_password2} ? 'alert-input'" name="password2" type="password" required class="input-height input-width"/>
+                <span th:if="${alert_password2}" th:text="${alert_password2}" class="alert-label red relative"></span><br/>
+                <label class="label-margin">Full name<span class="red"> *</span></label><br/>
+                <input th:value="${signup_fullname}" th:classappend="${alert_fullname} ? 'alert-input'" name="fullName" type="text" required class="input-height input-width"/>
+                <span th:if="${alert_fullname}" th:text="${alert_fullname}" class="alert-label red relative"></span><br/>
+                <label class="label-margin">Gender<span class="red"> *</span></label><br/>
+                <label class="padding"><input th:checked="${signup_gender == 'male'}" name="gender" type="radio" value="male" required class="relative"> Male</label><br/>
+                <label class="padding"><input th:checked="${signup_gender == 'female'}" name="gender" type="radio" value="female" class="relative"> Female</label><br/>
+                <button type="submit" class="big-button big-button-margin-1 green-hover input-height input-width"><span class="fa fa-user-plus"></span> Sign up</button>
+            </form>
+        </div>
+    </body>
+</html>

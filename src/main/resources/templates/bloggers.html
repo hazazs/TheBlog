@@ -1,0 +1,31 @@
+<html layout:decorate="~{layout/main}">
+    <head>
+        <title>Bloggers</title>
+    </head>
+    <body>
+        <div layout:fragment="content" class="padding">
+            <form th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" th:action="@{/bloggers/export-pdf}" method="post" class="inline">
+                <button type="submit" id="export-all-button" class="green-hover"><span class="fa fa-download"></span> Export all bloggers to PDF..</button>
+            </form>
+            <form th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')') && bloggers_search != null && !bloggers.isEmpty()}" th:action="@{/bloggers/export-pdf}" method="post" class="inline">
+                <input th:value="${bloggers_search}" name="search" type="hidden">
+                <button type="submit" id="export-result-button" class="green-hover"><span class="fa fa-download"></span> Export result to PDF..</button>
+            </form>
+            <div>
+                <form th:action="@{/bloggers}" method="post" onsubmit="disable(this)" class="inline">
+                    <input th:value="${bloggers_search}" name="search" type="text" placeholder="Search blogger" required class="input-height input-width"/>
+                    <button type="submit" id="search-button" class="green-hover input-height relative"><span class="fa fa-search"></span> Search</button>
+                </form>
+                <a th:if="${bloggers_search}" href="/bloggers"><button id="show-all-button" class="green-hover inline input-height relative"><span class="fa fa-users"></span> Show all</button></a>
+            </div>
+            <h1 th:if="${bloggers.isEmpty()}" id="no-result" class="padding">No result</h1>
+            <h1 th:each="blogger : ${bloggers}">
+                <a th:href="@{${'/blogger/' + blogger.username}}">
+                    <img th:src="@{${'/images/avatars/' + blogger.avatar}}" class="frame small-avatar"/>
+                    <span th:text="${blogger.fullName}" th:classappend="${!blogger.verified} ? 'red'" class="bold"></span>
+                </a>
+                <span th:if="${!blogger.verified}"> (not verified)</span>
+            </h1>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,23 @@
+<html layout:decorate="~{layout/main}">
+    <head>
+        <title>Help</title>
+    </head>
+    <body>
+        <div layout:fragment="content" class="padding">
+            <h1 class="h1-form">Please fill out the help form!</h1>
+            <form th:action="@{/help}" method="post" onsubmit="clearAndDisable(this)">
+                <div sec:authorize="!isAuthenticated()">
+                    <label>E-mail address<span class="red"> *</span></label><br/>
+                    <input th:value="${help_email}" th:classappend="${alert_email} ? 'alert-input'" name="email" type="text" required class="input-height input-width"/>
+                    <span th:if="${alert_email}" th:text="${alert_email}" class="alert-label red relative"></span><br/>
+                </div>
+                <label th:classappend="${#authorization.expression('isAuthenticated()')} ? 'margin-correction'" class="label-margin">Subject<span class="red"> *</span></label><br/>
+                <input th:value="${help_subject}" name="subject" type="text" required class="input-height input-width"/><br/>
+                <label class="label-margin">Message<span class="red"> *</span></label><br/>
+                <textarea th:text="${help_message}" name="message" type="text" required id="help-message"></textarea><br/>
+                <button type="submit" class="big-button big-button-margin-1 green-hover input-height input-width"><span class="fa fa-envelope"></span> Send</button>
+                <button type="button" onclick="window.history.back()" class="cancel-button green-hover input-height relative"><span class="fa fa-undo"></span> Cancel</button>
+            </form>
+        </div>
+    </body>
+</html>

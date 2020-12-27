@@ -1,0 +1,371 @@
+a {
+    text-decoration: none !important;
+}
+a,
+body {
+    color: black !important;
+}
+body {
+    font-family: 'Calibri', sans-serif;
+    overflow-y: scroll;
+}
+button {
+    background-color: #5cb85c;
+    border: solid 1px #4cae4c;
+    color: white;
+}
+button,
+input,
+textarea {
+    border-radius: 4px;
+}
+button,
+#change-avatar-label,
+#mobile-dropdown-content {
+    padding: 5px;
+}
+button,
+#mobile-dropdown-button:hover,
+.blog-buttons:hover > .blog-icon,
+.more-and-less:hover > .more-and-less-icon {
+    text-shadow: 1px 1px 2px black;
+}
+button:active {
+    box-shadow: 1px 1px 0px 0px black;
+}
+button:focus,
+input:focus,
+textarea:focus {
+    outline-width: 0px;
+}
+h1 {
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 38px;
+}
+input {
+    border-style: solid;
+}
+input,
+textarea {
+    border-color: #656565 #e3e3e3 #e3e3e3 #656565 !important;
+}
+input[type=radio] {
+    right: 2px;
+    top: 2px;
+    transform: scale(1.3);
+}
+input[type=radio],
+#change-avatar-label,
+#delete-blog-button,
+.more-and-less {
+    cursor: pointer;
+}
+label {
+    margin-bottom: 0px;
+}
+#avatar-and-spinner {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+#back-button,
+#request-button {
+    margin-bottom: 34px;
+}
+#blog-content,
+#help-message {
+    border-width: 2px;
+    height: 300px;
+    resize: none;
+    width: 686px;
+}
+#blog-header-h1 {
+    margin-bottom: 9px;
+}
+#blogger-h1-blogs {
+    margin: 26px 0px 21px 0px;
+}
+#blogger-username {
+    margin: 21px 0px 10px 0px;
+}
+#change-avatar-button {
+    padding: 0px;
+}
+#change-avatar-button,
+#default-avatar-button {
+    margin: 16px 0px -4px 0px;
+}
+#change-avatar-button,
+#default-avatar-button,
+#delete-account-button {
+    width: 122px;
+}
+#change-avatar-label {
+    font-weight: normal;
+}
+#delete-account-button {
+    background-color: #d9534f;
+    border: solid 1px #d43f3a;
+}
+#delete-account-button,
+.big-button-margin-1 {
+    margin-top: 10px;
+}
+#edit-and-delete-button,
+.blogger-p-blogs {
+    margin: 9px 0px -6px 0px;
+}
+#export-all-button,
+#export-result-button {
+    margin-bottom: 16px;
+}
+#export-result-button {
+    width: 180px;
+}
+#footer,
+.small-avatar {
+    margin-top: -7px;
+}
+#forgot-your-password {
+    font-size: 10px;
+}
+#forgot-your-password,
+.hyperlink {
+    color: blue !important;
+}
+#forgot-your-password-a {
+    margin: 24px 0px 0px -267px;
+}
+#fragment {
+    padding-top: 76px;
+}
+#jump-to-top-button {
+    bottom: 20px;
+    position: fixed;
+    right: 12.2%;
+}
+#login-button {
+    margin-left: -1px;
+    padding: 1px 10px 2px 9px;
+}
+#login-button,
+#logout-button {
+    width: 70px;
+}
+#login-button,
+#search-button,
+#show-all-button,
+.mobile-dropdown-content-menu {
+    top: -1px;
+}
+#logout-button {
+    background-color: #337ab7;
+    border: solid 1px #2e6da4;
+    margin-left: 1px;
+    padding: 1px 6px 2px 6px;
+}
+#maximum-image-size,
+#password-make-sure {
+    font-size: 11px;
+}
+#mobile-dropdown {
+    margin: 15px 0px 0px 17px;
+}
+#mobile-dropdown-button {
+    background-color: transparent;
+    border: none;
+    transform: scale(2,2);
+}
+#mobile-dropdown-button:focus {
+    box-shadow: none;
+}
+#mobile-dropdown-button,
+.blog-icon,
+.more-and-less-icon {
+    text-shadow: 1px 1px 2px grey;
+}
+#mobile-dropdown-content {
+    background-color: #f8f8f8;
+    border: 1px solid #e7e7e7;
+    left: -8px;
+    top: 22px;
+    width: 100px;
+}
+#no-blogs,
+#no-result {
+    margin: 20px 0px 26px -2px;
+}
+#password-make-sure {
+    margin: -1px 0px 5px 5px;
+}
+#request-button {
+    width: 177px;
+}
+#search-button {
+    width: 80px;
+}
+#signup-small-button {
+    margin: 15px 0px 0px 16px;
+    padding: 2px 7px 1px 7px;
+}
+#spinner {
+    font-size: 40px;
+}
+.absolute {
+    position: absolute;
+}
+.alert-input {
+    border-color: red #f2dede #f2dede red !important;
+}
+.alert-label {
+    background-color: #f2dede;
+    padding: 1px 5px 3px 5px;
+    top: -2px;
+}
+.article-correction {
+    margin-top: -16px;
+}
+.avatar-opacity {
+    opacity: 0.2;
+}
+.big-button {
+    font-size: 22px;
+}
+.big-button-margin-2 {
+    margin-top: 16px;
+}
+.blog-buttons {
+    margin-right: 10px;
+}
+.blog-buttons:hover > .blog-button,
+.bold:hover,
+.more-and-less:hover > .more-and-less-button {
+    text-shadow: 1px 0px 0px black;
+}
+.blog-p-content {
+    margin: 3px 0px -6px 0px;
+    padding-right: 17px;
+    white-space: pre-wrap;
+}
+.blogs-hr {
+    margin: 16px 17px 0px 0px;
+}
+.blue-hover:hover {
+    background-color: #286090 !important;
+    border: solid 1px #204d74 !important;
+}
+.cancel-button {
+    top: -4px;
+    width: 253px;
+}
+.center {
+    text-align: center;
+}
+.frame {
+    outline: 1px solid #e7e7e7;
+    outline-offset: -1px;
+}
+.green {
+    color: #5cb85c;
+}
+.green-hover:hover {
+    background-color: #449d44;
+    border: solid 1px #398439;
+}
+.h1-0 {
+    margin-top: 0px;
+}
+.h1-1 {
+    margin: 0px 0px 28px 0px;
+}
+.h1-2 {
+    margin: -14px 0px 28px 0px;
+}
+.h1-form {
+    margin: 0px 0px 21px -2px;
+}
+.hidden {
+    display: none;
+}
+.hyperlink:hover {
+    text-decoration: underline !important;
+}
+.inline {
+    display: inline-block;
+}
+.input-height {
+    height: 42px;
+}
+.input-width {
+    width: 430px;
+}
+.label-margin {
+    margin-top: 9px;
+}
+.login-input {
+    height: 23px;
+    width: 200px;
+}
+.margin-correction {
+    margin-top: -20px;
+}
+.menu-icon {
+    color: grey;
+}
+.mobile-dropdown-content-menu {
+    left: 21px;
+}
+.mobile-dropdown-content-show {
+    display: block !important;
+}
+.more-and-less-icon {
+    margin-top: 5px;
+}
+.nav {
+    padding-top: 3px;
+}
+.navbar {
+    height: 56px;
+}
+.navbar-right {
+    margin: 16px 16px 0px 0px;
+}
+.orange {
+    color: #ffbf00;
+}
+.padding {
+    padding-left: 17px;
+}
+.red {
+    color: #d9534f;
+}
+.red-hover:hover {
+    background-color: #c9302c !important;
+    border: solid 1px #ac2925 !important;
+}
+.relative {
+    position: relative;
+}
+.small-avatar {
+    height: 51px;
+    width: 51px;
+}
+.small-avatar:hover {
+    outline: 1px solid grey;
+}
+.transform:hover {
+    transform: scale(1.2,1.2);
+}
+@media screen and (min-width: 1024px) {
+    #mobile-dropdown {
+        display: none;
+    }
+}
+@media screen and (max-width: 1023px) {
+    #desktop-menu {
+        display: none;
+    }
+    #signup-small-button {
+        margin: 15px 0px 0px 72px;
+    }
+}

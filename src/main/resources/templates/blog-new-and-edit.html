@@ -1,0 +1,20 @@
+<html layout:decorate="~{layout/main}">
+    <head>
+        <title th:text="${title}"></title>
+    </head>
+    <body>
+        <div layout:fragment="content" class="padding">
+            <h1 class="h1-form">Please set the title and content of your blog entry!</h1>
+            <form th:action="@{${action}}" method="post" onsubmit="disable(this)">
+                <label>Title<span class="red"> *</span></label><br/>
+                <input th:value="${blog.title}" name="title" type="text" required class="input-height input-width"/><br/>
+                <label class="label-margin">Content<span class="red"> *</span></label><br/>
+                <textarea th:text="${blog.content}" name="content" type="text" required id="blog-content"></textarea><br/>
+                <button type="submit" class="big-button big-button-margin-1 green-hover input-height input-width">
+                    <span th:class="${#httpServletRequest.requestURI == '/blogs/new'} ? 'fa fa-pencil-alt' : 'fa fa-save'"></span><span th:text="${' ' + button}"></span>
+                </button>
+                <button type="button" onclick="window.history.back()" class="cancel-button green-hover input-height relative"><span class="fa fa-undo"></span> Cancel</button>
+            </form>
+        </div>
+    </body>
+</html>

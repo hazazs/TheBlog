@@ -1,0 +1,41 @@
+<html layout:decorate="~{layout/main}">
+    <head>
+        <title th:text="${blogger.username}"></title>
+    </head>
+    <body>
+        <div layout:fragment="content" class="center">
+            <h1 th:text="${blogger.fullName}" th:classappend="${!blogger.verified} ? 'red'" class="h1-0"></h1>
+            <p th:text="${blogger.username}" id="blogger-username"></p>
+            <div id="avatar-and-spinner">
+                <img th:src="@{${'/images/avatars/' + blogger.avatar}}" th:alt="${blogger.username}" th:classappend="${!blogger.verified} ? 'avatar-opacity'" id="avatar" class="frame"/>
+                <img th:classappend="${blogger.verified} ? 'hidden'" src="/images/not-verified.png" alt="not-verified" id="not-verified" class="absolute"/>
+                <span id="spinner" class="absolute fa fa-spin fa-spinner hidden"></span>
+            </div>
+            <span th:if="${#authentication.name == blogger.username || #authorization.expression('hasRole(''ROLE_ADMIN'')')}">
+                <form th:action="@{${'/blogger/' + blogger.username + '/change-avatar-failed'}}" method="post" enctype="multipart/form-data" class="inline">
+                    <button type="button" id="change-avatar-button" class="green-hover"><label for="upload" id="change-avatar-label"><span class="fa fa-image"></span> Change avatar</label></button>
+                    <input name="file" type="file" onchange="form.submit(); avatar()" id="upload" class="hidden"/>
+                </form>
+                <form th:if="${!#strings.endsWith(blogger.avatar,'png')}" th:action="@{${'/blogger/' + blogger.username + '/default-avatar'}}"
+                      onsubmit="return confirm('Are you sure you want to change your avatar to default?') ? avatar() : false" method="post" class="inline">
+                    <button type="submit" id="default-avatar-button" class="green-hover"><span class="fa fa-image"></span> Default avatar</button>
+                </form>
+                <br/>
+                <span id="maximum-image-size">Maximum image size: 5MB / Supported image formats: jp(e)g, png</span>
+                <form th:action="@{${'/blogger/' + blogger.username + '/delete-account'}}" method="post" onsubmit="return confirm('Are you sure you want to delete this account?') ? disable(this) : false">
+                    <button type="submit" id="delete-account-button" class="red-hover"><span class="fa fa-trash-alt"></span> Delete account</button>
+                </form>
+            </span>
+            <h1 id="blogger-h1-blogs">BLOGS</h1>
+            <p th:if="${blogs.isEmpty()}" class="blogger-p-blogs">No blogs</p>
+            <p th:each="blog : ${blogs}" class="blogger-p-blogs bold"><a th:href="@{${'/blog/' + blog.id}}"><span th:text="${blog.title}"></span></a></p>
+            <script>
+                function avatar() {
+                    document.getElementById('avatar').style.opacity = 0.2;
+                    document.getElementById('not-verified').style.opacity = 0.2;
+                    document.getElementById('spinner').classList.remove('hidden');
+                }
+            </script>
+        </div>
+    </body>
+</html>

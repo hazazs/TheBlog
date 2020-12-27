@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head>
+        <meta charset="UTF-8"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="/css/main.css"/>
+        <link rel="stylesheet" href="https://bit.ly/3m7MA2W"/>
+        <link rel="stylesheet" href="https://bit.ly/2JHzVa1"/>
+    </head>
+    <body>
+        <div class="container">
+            <nav class="navbar navbar-default navbar-fixed-top">
+                <ul id="desktop-menu" class="nav navbar-nav">
+                    <li><a href="/" class="transform"><span class="fa fa-home menu-icon"></span> HOME</a></li>
+                    <li><a href="/blogs" class="transform"><span class="fa fa-comments menu-icon"></span> BLOGS</a></li>
+                    <li><a href="/bloggers" class="transform"><span class="fa fa-users menu-icon"></span> BLOGGERS</a></li>
+                    <li sec:authorize="!hasRole('ROLE_ADMIN')" class="transform"><a href="/help"><span class="fa fa-question-circle menu-icon"></span> HELP</a></li>
+                </ul>
+                <div id="mobile-dropdown" class="absolute">
+                    <button id="mobile-dropdown-button" class="fa fa-bars"></button>
+                    <div id="mobile-dropdown-content" class="hidden relative">
+                        <a href="/" class="bold"><span class="absolute fa fa-home menu-icon"></span><span class="mobile-dropdown-content-menu relative">HOME</span></a><br/>
+                        <a href="/blogs" class="bold"><span class="absolute fa fa-comments menu-icon"></span><span class="mobile-dropdown-content-menu relative">BLOGS</span></a><br/>
+                        <a href="/bloggers" class="bold"><span class="absolute fa fa-users menu-icon"></span><span class="mobile-dropdown-content-menu relative">BLOGGERS</span></a><br/>
+                        <a sec:authorize="!hasRole('ROLE_ADMIN')" href="/help" class="bold">
+                            <span class="absolute fa fa-question-circle menu-icon"></span><span class="mobile-dropdown-content-menu relative">HELP</span>
+                        </a>
+                    </div>
+                </div>
+                <a sec:authorize="!isAuthenticated()" href="/signup"><button id="signup-small-button" class="green-hover"><span class="fa fa-user-plus"></span> SIGN UP</button></a>
+                <div class="navbar-right">
+                    <form sec:authorize="!isAuthenticated()" th:action="@{/login-failed}" method="post" onsubmit="disable(this)">
+                        <input th:value="${username}" type="text" name="username" placeholder="username / e-mail address" required class="login-input"/>
+                        <input th:value="${password}" type="password" name="password" placeholder="password" required class="login-input"/>
+                        <button type="submit" id="login-button" class="btn-xs green-hover relative"><span class="fa fa-sign-in-alt"></span> Log in</button>
+                        <a href="/password/forgot" id="forgot-your-password-a" class="absolute"><p id="forgot-your-password" class="bold">Forgot your password?</p></a>
+                    </form>
+                    <div sec:authorize="isAuthenticated()">
+                        <a th:href="@{${'/blogger/' + #authentication.name}}" class="bold"><span th:text="${#authentication.name}"></span></a> | 
+                        <form th:action="@{/logout}" method="post" onsubmit="disable(this)" class="inline">
+                            <button type="submit" id="logout-button" class="blue-hover btn-xs"><span class="fa fa-sign-out-alt"></span> Log out</button>
+                        </form>
+                    </div>
+                </div>
+            </nav>
+            <div layout:fragment="content" id="fragment"></div>
+            <button onclick="document.documentElement.scrollTop = 0" id="jump-to-top-button" class="green-hover hidden"><span class="fa fa-arrow-up"></span> Jump to the top</button>
+            <footer>
+                <hr/>
+                <p id="footer">Made by hazazs (©Copyrighted by hazazs™)</p>
+            </footer>
+        </div>
+        <script>
+            window.onclick = function(event) {
+                if (!event.target.matches('#mobile-dropdown-button')) {
+                    var mobileContent = document.getElementById('mobile-dropdown-content');
+                    if (mobileContent.classList.contains('mobile-dropdown-content-show'))
+                        mobileContent.classList.remove('mobile-dropdown-content-show');
+                } else document.getElementById('mobile-dropdown-content').classList.toggle('mobile-dropdown-content-show');
+            };
+            window.onscroll = function() {
+                var button = document.getElementById("jump-to-top-button");
+                if (document.documentElement.scrollTop > 20)
+                    button.classList.remove('hidden');
+                else button.classList.add('hidden');
+            };
+            function clearAndDisable(form) {
+                Array.prototype.forEach.call(form.elements, element => element.classList.remove('alert-input'));
+                Array.prototype.forEach.call(form.getElementsByClassName('alert-label'), alert => alert.classList.toggle('hidden'));
+                disable(form);
+            }
+            function disable(form) {
+                var button = form.querySelector('button[type=submit]');
+                button.innerHTML = '<span class="fa fa-spin fa-spinner"></span>';
+                button.disabled = true;
+                button.style.opacity = 0.5;
+                button.classList.forEach(item => {if (item.endsWith('-hover')) button.classList.remove(item);});
+                button.style.boxShadow = 'none';
+            }
+        </script>
+    </body>
+</html>
